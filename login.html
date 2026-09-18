@@ -1,0 +1,135 @@
+<!doctype html>
+<html class="no-js" lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ورود | بازانو</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="assets/css/font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fontawesome-7.1.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .auth_page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            background: var(--bz-bg, #f7f7f5);
+        }
+        .auth_card {
+            width: 100%;
+            max-width: 420px;
+            padding: 36px 28px;
+            border-radius: var(--bz-radius-lg, 28px);
+            border: 1px solid var(--bz-border, rgba(255,255,255,.86));
+            background: var(--bz-surface, rgba(255,255,255,.72));
+            box-shadow: var(--bz-shadow, 0 14px 36px rgba(31,38,48,.08));
+            backdrop-filter: blur(18px);
+        }
+        .auth_card h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--bz-text, #242824);
+        }
+        .auth_card .subtitle {
+            text-align: center;
+            color: var(--bz-muted, #727772);
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+        }
+        .auth_card .form-group {
+            margin-bottom: 18px;
+        }
+        .auth_card label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: var(--bz-text);
+        }
+        .auth_card input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--bz-border-soft, rgba(106,121,100,.16));
+            border-radius: var(--bz-radius-sm, 14px);
+            background: rgba(255,255,255,.6);
+            font-size: 1rem;
+            font-family: inherit;
+            direction: ltr;
+            text-align: left;
+        }
+        .auth_card input:focus {
+            outline: none;
+            border-color: var(--bz-accent, #6a7964);
+        }
+        .btn_auth {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 50px;
+            background: var(--bz-accent, #6a7964);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .btn_auth:hover { background: #5a6856; }
+        .btn_link {
+            background: none;
+            border: none;
+            color: var(--bz-muted);
+            margin-top: 12px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        .auth_message {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .auth_message.error { color: #c0392b; }
+        .auth_message.success { color: #27ae60; }
+        .auth_logo {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--bz-accent, #6a7964);
+        }
+    </style>
+</head>
+<body>
+    <div class="auth_page">
+        <div class="auth_card">
+            <div class="auth_logo">بازانو</div>
+            <h1>ورود / ثبت‌نام</h1>
+            <p class="subtitle">با ایمیل وارد شوید</p>
+
+            <div id="step-email">
+                <div class="form-group">
+                    <label>ایمیل</label>
+                    <input type="email" id="email" placeholder="example@email.com" autocomplete="email">
+                </div>
+                <button class="btn_auth" id="send-otp-btn">دریافت کد</button>
+            </div>
+
+            <div id="step-otp" style="display:none;">
+                <p class="subtitle" style="margin-bottom:16px;">کد ۶ رقمی ارسال شد</p>
+                <div class="form-group">
+                    <label>کد تأیید</label>
+                    <input type="text" id="otp" placeholder="123456" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+                </div>
+                <button class="btn_auth" id="verify-otp-btn">تأیید و ورود</button>
+                <button class="btn_link" id="back-btn">بازگشت</button>
+            </div>
+
+            <div id="message" class="auth_message"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/bazano-auth.js"></script>
+</body>
+</html>

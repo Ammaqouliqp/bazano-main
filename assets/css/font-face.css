@@ -1,0 +1,55 @@
+@font-face {
+  font-family: IRANSansWebFaNum;
+  src: url('../webfonts/IRANSansWebFaNum.eot');
+  src: url('../webfonts/IRANSansWebFaNum.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/IRANSansWebFaNum.woff2') format('woff2'),
+       url('../webfonts/IRANSansWebFaNum.woff') format('woff'),
+       url('../webfonts/IRANSansWebFaNum.ttf') format('truetype');
+  font-weight: normal;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: IRANSansWebFaNum;
+  src: url('../webfonts/IRANSansWebFaNum.eot');
+  src: url('../webfonts/IRANSansWebFaNum.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/IRANSansWebFaNum.woff2') format('woff2'),
+       url('../webfonts/IRANSansWebFaNum.woff') format('woff'),
+       url('../webfonts/IRANSansWebFaNum.ttf') format('truetype');
+  font-weight: bold;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: IRANSansWebFaNum;
+  src: url('../webfonts/IRANSansWebFaNum.eot');
+  src: url('../webfonts/IRANSansWebFaNum.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/IRANSansWebFaNum.woff2') format('woff2'),
+       url('../webfonts/IRANSansWebFaNum.woff') format('woff'),
+       url('../webfonts/IRANSansWebFaNum.ttf') format('truetype');
+  font-weight: 100;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: IRANSansWebFaNum;
+  src: url('../webfonts/IRANSansWebFaNum.eot');
+  src: url('../webfonts/IRANSansWebFaNum.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/IRANSansWebFaNum.woff2') format('woff2'),
+       url('../webfonts/IRANSansWebFaNum.woff') format('woff'),
+       url('../webfonts/IRANSansWebFaNum.ttf') format('truetype');
+  font-weight: 300;
+  font-display:swap;
+}
+
+@font-face {
+  font-family: IRANSansWebFaNum;
+  src: url('../webfonts/IRANSansWebFaNum.eot');
+  src: url('../webfonts/IRANSansWebFaNum.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/IRANSansWebFaNum.woff2') format('woff2'),
+       url('../webfonts/IRANSansWebFaNum.woff') format('woff'),
+       url('../webfonts/IRANSansWebFaNum.ttf') format('truetype');
+  font-weight: 500;
+  font-display:swap;
+}
+

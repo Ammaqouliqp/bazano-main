@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>گفتگو | بازانو</title>
+<link href="assets/css/font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="assets/fontawesome-7.1.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+html,body{height:100%;margin:0}
+.chat_layout{display:flex;height:calc(100vh - 60px);max-width:1100px;margin:0 auto;border:1px solid rgba(106,121,100,.12);background:rgba(255,255,255,.6);backdrop-filter:blur(12px)}
+.chat_list{width:320px;border-left:1px solid rgba(106,121,100,.12);overflow:auto;background:rgba(247,247,245,.9)}
+.chat_list_item{padding:14px 16px;border-bottom:1px solid rgba(106,121,100,.08);cursor:pointer}
+.chat_list_item.active,.chat_list_item:hover{background:rgba(106,121,100,.08)}
+.chat_main{flex:1;display:flex;flex-direction:column}
+.chat_messages{flex:1;overflow:auto;padding:16px}
+.msg{max-width:75%;margin:8px 0;padding:10px 14px;border-radius:16px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.msg.me{margin-right:auto;background:#e8f0eb}
+.msg .meta{font-size:.75rem;color:#727772;margin-bottom:4px}
+.chat_input{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(106,121,100,.12)}
+.chat_input input{flex:1;padding:12px;border-radius:20px;border:1px solid rgba(106,121,100,.2)}
+.chat_input button{padding:10px 18px;border:none;border-radius:20px;background:#6a7964;color:#fff}
+.empty{padding:40px;text-align:center;color:#727772}
+@media(max-width:768px){.chat_list{width:100%}.chat_main{display:none}.chat_layout.show-chat .chat_list{display:none}.chat_layout.show-chat .chat_main{display:flex;width:100%}}
+</style>
+</head>
+<body>
+<header style="height:60px;display:flex;align-items:center;padding:0 16px;border-bottom:1px solid rgba(106,121,100,.12);background:#fff">
+<a href="/" style="font-weight:700;color:#6a7964;text-decoration:none;margin-left:16px">بازانو</a>
+<span style="flex:1;text-align:center;color:#242824">گفتگو</span>
+<a href="/profile/dashboard.html" style="color:#727772;text-decoration:none;font-size:.9rem">داشبورد</a>
+</header>
+<div class="chat_layout" id="layout">
+  <div class="chat_list" id="list"><div class="empty">در حال بارگذاری...</div></div>
+  <div class="chat_main" id="main">
+    <div class="chat_messages" id="messages"><div class="empty">یک گفتگو را انتخاب کنید</div></div>
+    <div class="chat_input">
+      <input id="msg-input" placeholder="پیام بنویسید..." disabled>
+      <button id="send-btn" disabled>ارسال</button>
+    </div>
+  </div>
+</div>
+<script src="assets/js/bazano-auth.js"></script>
+<script>
+if(!requireAuth()){}
+let currentId=null;
+let myId=null;
+try{myId=getTokenPayload().id;}catch(e){}
+
+async function loadList(){
+  try{
+    const rows=await apiFetch('/conversations');
+    const list=document.getElementById('list');
+    if(!rows.length){list.innerHTML='<div class="empty">گفتگویی نیست</div>';return;}
+    list.innerHTML=rows.map(c=>`<div class="chat_list_item" data-id="${c.id}">
+      <strong>${c.title||'گفتگو'}</strong>
+      <div style="font-size:.8rem;color:#727772">${c.user_firstname||c.provider_firstname||''}</div>
+    </div>`).join('');
+    list.querySelectorAll('.chat_list_item').forEach(el=>{
+      el.onclick=()=>openChat(el.dataset.id);
+    });
+  }catch(e){document.getElementById('list').innerHTML='<div class="empty">'+e.message+'</div>';}
+}
+
+async function openChat(id){
+  currentId=id;
+  document.getElementById('layout').classList.add('show-chat');
+  document.getElementById('msg-input').disabled=false;
+  document.getElementById('send-btn').disabled=false;
+  document.querySelectorAll('.chat_list_item').forEach(el=>el.classList.toggle('active',el.dataset.id==id));
+  await loadMessages();
+}
+
+async function loadMessages(){
+  if(!currentId)return;
+  try{
+    const rows=await apiFetch('/conversations/'+currentId+'/messages');
+    const box=document.getElementById('messages');
+    box.innerHTML=rows.map(m=>{
+      const me=m.sender_id==myId;
+      return `<div class="msg ${me?'me':''}"><div class="meta">${m.firstname||''} · ${new Date(m.created_at).toLocaleTimeString('fa-IR')}</div>${m.body}</div>`;
+    }).join('')||'<div class="empty">پیامی نیست</div>';
+    box.scrollTop=box.scrollHeight;
+  }catch(e){}
+}
+
+document.getElementById('send-btn').onclick=async()=>{
+  const input=document.getElementById('msg-input');
+  const body=input.value.trim();
+  if(!body||!currentId)return;
+  try{
+    await apiFetch('/conversations/'+currentId+'/messages','POST',{body});
+    input.value='';
+    await loadMessages();
+  }catch(e){alert(e.message);}
+};
+
+loadList();
+setInterval(()=>{if(currentId)loadMessages();},5000);
+</script>
+</body></html>

@@ -1,0 +1,311 @@
+/*blog css here*/
+.blog_section {
+    & .product_header{
+        padding-top: 95px;
+        @media #{$tablet-device}{
+            padding-top: 78px;
+        }
+        @media #{$large-mobile}{
+            flex-direction: row;
+            padding-top: 55px;
+        }
+    }
+    &.mb-140{
+        @media #{$tablet-device}{
+            margin-bottom: 72px;
+        }
+        @media #{$large-mobile}{
+            margin-bottom: 50px;
+        }
+    }
+}
+.blog_meta{
+    margin-bottom: 15px;
+    @media #{$tablet-device}{
+        margin-bottom: 11px;
+    }
+    & ul{
+        & li{
+            margin-left: 17px;
+            padding-left: 17px;
+            line-height: 18px;
+            position: relative;
+            &::before{
+                position: absolute;
+                content: "";
+                width: 1px;
+                height: 13px;
+                background: #cecece;
+                top: 2px;
+                left: 0;
+            }
+            &:last-child{
+                margin-left: 0;
+                padding-left: 0;
+                &::before{
+                    display: none;
+                }
+            }
+            & span{
+                font-size: 14px;
+                line-height: 18px;
+                display: inline-block;
+                color: #000000;
+                font-weight: 400;
+                &.meta_tag{
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.blog_thumb{
+    & img{
+        width: 100%;
+    }
+}
+.blog_content{
+    padding-top: 30px;
+    @media #{$tablet-device}{
+        padding-top: 21px;
+    }
+    @media #{$large-mobile}{
+        padding-top: 18px;
+    }
+    & > h3{
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: 600;
+        margin-bottom: 0;
+        @media #{$desktop-device}{
+            font-size: 17px;
+            line-height: 26px;
+        }
+        @media #{$tablet-device}{
+            font-size: 16px;
+            line-height: 27px;
+        }
+        @media #{$large-mobile}{
+            font-size: 15px;
+            line-height: 24px;
+        }
+        & a{
+            color: #222222;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}
+.blog_container.row{
+    margin-left: -25px;
+    margin-right: -25px;
+    @media #{$laptop-device}{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    @media #{$desktop-device}{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    @media #{$tablet-device}{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+    @media #{$large-mobile}{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+}
+.blog_slick {
+    & .col{
+        padding-left: 15px;
+        padding-right: 15px;
+        @media #{$laptop-device}{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @media #{$desktop-device}{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @media #{$tablet-device}{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @media #{$large-mobile}{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    }
+    
+}
+
+
+
+.all_articles{
+    margin-right: 68px;
+    & a{
+        font-size: 16px;
+        line-height: 18px;
+        display: inline-block;
+        text-transform: uppercase;
+        border-bottom: 2px solid #8f8f8f;
+        font-weight: 400;
+        &:hover{
+            color: $secondary_color;
+        }
+        @media #{$large-mobile}{
+            font-size: 13px;
+            line-height: 18px;
+        }
+    }
+}
+
+
+/*blog page css here*/
+.blog_page_section {
+    &.mb-140{
+        @media #{$tablet-device}{
+            margin-bottom: 74px;
+        }
+        @media #{$large-mobile}{
+           margin-bottom: 54px;
+        }
+    }
+}
+.breadcrumbs_blog{
+    padding: 63px 0 73px;
+    @media #{$tablet-device}{
+        padding: 36px 0 65px;
+    }
+    @media #{$large-mobile}{
+        padding: 26px 0 47px;
+    }
+    & .breadcrumb_content {
+        margin-bottom: 0;
+        & h3{
+            font-size: 48px;
+            line-height: 60px;
+            text-transform: uppercase;
+            color: #000000;
+            margin-top: 36px;
+            margin-bottom: 0;
+            @media #{$tablet-device}{
+                font-size: 35px;
+                line-height: 48px;
+                margin-top: 24px;
+            }
+            @media #{$large-mobile}{
+                font-size: 23px;
+                line-height: 35px;
+                margin-top: 20px;
+            }
+            @media #{$small-mobile2}{
+                font-size: 18px;
+                line-height: 31px;
+            }
+        }
+    }
+}
+.pagination_style.blog_pagination{
+     @media #{$tablet-device}{
+        padding-top: 0;
+    }
+    @media #{$large-mobile}{
+        padding-top: 0;
+    }
+    & ul{
+        & li{
+            margin-right: 28px;
+            &:first-child{
+                margin-right: 0;
+            }
+            @media #{$small-mobile2}{
+                margin-right: 18px;
+            }
+            & a{
+                font-size: 17px;
+                font-weight: 400;
+                @media #{$small-mobile2}{
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+.blog_page_gallery{
+    & .single_blog{
+        margin-bottom: 70px;
+        @media #{$tablet-device}{
+            margin-bottom: 40px;
+        }
+        @media #{$large-mobile}{
+           margin-bottom: 30px;
+        }
+    }
+}
+
+.blog_messonry_button{
+    margin-bottom: 71px;
+    @media #{$tablet-device}{
+        margin-bottom: 40px;
+    }
+    @media #{$large-mobile}{
+        margin-bottom: 30px;
+    }
+     @media #{$small-mobile2}{
+        flex-wrap: wrap;
+    }
+    & button{
+        font-size: 18px;
+        text-transform: uppercase;
+        line-height: 20px;
+        font-weight: 500;
+        padding: 0;
+        background: inherit;
+        border: 0;
+        margin-right: 48px;
+        &:hover{
+            color: #da4426;
+        }
+        &.active{
+            color: #da4426;
+        }
+        &:first-child{
+            margin-right: 0;
+        }
+        @media #{$tablet-device}{
+            margin-right: 30px;
+            font-size: 16px;
+        }
+        @media #{$large-mobile}{
+            font-size: 15px;
+            margin-right: 22px;
+        }
+        @media #{$small-mobile2}{
+            font-size: 14px;
+            margin-right: 18px;
+            line-height: 28px;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

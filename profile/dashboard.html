@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>داشبورد | بازانو</title>
+<link href="../assets/css/font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/fontawesome-7.1.0/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+.page{padding:32px 0 100px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:8px 16px;border-radius:20px;border:1px solid rgba(106,121,100,.2);background:transparent;cursor:pointer}
+.tab.active{background:#6a7964;color:#fff;border-color:#6a7964}
+.card-g{background:rgba(255,255,255,.72);border:1px solid rgba(106,121,100,.16);border-radius:20px;padding:16px;margin-bottom:12px}
+.btn_sm{padding:6px 12px;border-radius:16px;border:none;background:#6a7964;color:#fff;cursor:pointer;font-size:.85rem}
+input,select,textarea{width:100%;padding:10px;border-radius:12px;border:1px solid rgba(106,121,100,.2);margin-bottom:8px}
+</style>
+</head>
+<body>
+<header style="height:60px;display:flex;align-items:center;padding:0 16px;border-bottom:1px solid rgba(106,121,100,.12);background:#fff">
+<a href="/" style="font-weight:700;color:#6a7964;text-decoration:none">بازانو</a>
+<span style="flex:1;text-align:center">داشبورد</span>
+<a href="/profile/" style="color:#727772;text-decoration:none;font-size:.9rem">پروفایل</a>
+</header>
+<main class="page"><div class="container">
+<div id="who" style="margin-bottom:16px;color:#727772"></div>
+<div class="tabs" id="tabs"></div>
+<div id="panel"></div>
+</div></main>
+<script src="../assets/js/bazano-auth.js"></script>
+<script>
+if(!requireAuth()){}
+let me=null;
+
+async function init(){
+  me=await apiFetch('/users/me');
+  document.getElementById('who').textContent=me.firstname+' '+me.lastname+' · '+roleLabel(me.role);
+  buildTabs();
+}
+
+function roleLabel(r){return {user:'کاربر',provider:'ارائه‌دهنده',admin:'ادمین'}[r]||r;}
+
+function buildTabs(){
+  const tabs=[];
+  tabs.push({id:'needs',label:'نیازهای من'});
+  if(me.role==='provider'||me.role==='admin'){
+    tabs.push({id:'offers',label:'خدمات من'});
+    tabs.push({id:'requests',label:'درخواست‌ها'});
+  }
+  if(me.role==='admin'){
+    tabs.push({id:'admin-needs',label:'درخواست نیازها'});
+    tabs.push({id:'admin-users',label:'کاربران'});
+  }
+  const el=document.getElementById('tabs');
+  el.innerHTML=tabs.map((t,i)=>`<button class="tab ${i===0?'active':''}" data-id="${t.id}">${t.label}</button>`).join('');
+  el.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+    el.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    show(b.dataset.id);
+  });
+  show(tabs[0].id);
+}
+
+async function show(id){
+  const panel=document.getElementById('panel');
+  panel.innerHTML='بارگذاری...';
+  try{
+    if(id==='needs'){
+      const rows=await apiFetch('/needs/mine');
+      panel.innerHTML=`<div class="card-g"><h4>ثبت نیاز</h4>
+        <input id="nt" placeholder="عنوان"><textarea id="nm" rows="3" placeholder="پیام"></textarea>
+        <button class="btn_sm" id="nadd">ثبت</button></div>`+
+        (rows.map(n=>`<div class="card-g"><strong>${n.title}</strong> · ${n.status}<p>${n.message||''}</p></div>`).join('')||'<p>نیازی نیست</p>');
+      document.getElementById('nadd').onclick=async()=>{
+        await apiFetch('/needs','POST',{title:document.getElementById('nt').value,message:document.getElementById('nm').value});
+        show('needs');
+      };
+    }
+    if(id==='offers'){
+      const rows=await apiFetch('/offers/mine');
+      panel.innerHTML=`<div class="card-g"><h4>ثبت خدمت</h4>
+        <input id="ot" placeholder="عنوان"><textarea id="om" rows="2" placeholder="توضیح"></textarea>
+        <input id="oc" placeholder="دسته‌بندی">
+        <select id="otype"><option value="service">خدمت</option><option value="skill">مهارت</option><option value="product">محصول</option></select>
+        <button class="btn_sm" id="oadd">ثبت</button></div>`+
+        rows.map(o=>`<div class="card-g"><strong>${o.title}</strong> · ${o.type}<p>${o.message||''}</p>
+          <button class="btn_sm" onclick="delOffer(${o.id})">حذف</button></div>`).join('')||'<p>خدمتی نیست</p>';
+      document.getElementById('oadd').onclick=async()=>{
+        await apiFetch('/offers','POST',{title:document.getElementById('ot').value,message:document.getElementById('om').value,category:document.getElementById('oc').value,type:document.getElementById('otype').value});
+        show('offers');
+      };
+    }
+    if(id==='requests'){
+      const rows=await apiFetch('/provider/requests');
+      panel.innerHTML=rows.map(r=>`<div class="card-g"><strong>${r.title}</strong><p>${r.message||''}</p>
+        <div>${r.firstname} ${r.lastname}</div>
+        ${r.conversation_id?`<a class="btn_sm" href="/chat.html">گفتگو #${r.conversation_id}</a>`:''}
+      </div>`).join('')||'<p>درخواستی نیست</p>';
+    }
+    if(id==='admin-needs'){
+      const rows=await apiFetch('/admin/needs');
+      const providers=(await apiFetch('/admin/users')).filter(u=>u.role==='provider'||u.role==='admin');
+      panel.innerHTML=rows.map(n=>`<div class="card-g"><strong>${n.title}</strong> · ${n.status}
+        <p>${n.message||''}</p>
+        <div style="font-size:.85rem">${n.firstname} ${n.lastname} · ${n.phone||''}</div>
+        <select id="p-${n.id}">${providers.map(p=>`<option value="${p.id}">${p.firstname} ${p.lastname}</option>`).join('')}</select>
+        <button class="btn_sm" onclick="assign(${n.id})">ارجاع به ارائه‌دهنده</button>
+      </div>`).join('')||'<p>موردی نیست</p>';
+    }
+    if(id==='admin-users'){
+      const rows=await apiFetch('/admin/users');
+      panel.innerHTML=rows.map(u=>`<div class="card-g">
+        <strong>${u.firstname||''} ${u.lastname||''}</strong> · ${u.email} · ${u.role}
+        <div>
+          <button class="btn_sm" onclick="setRole(${u.id},'user')">کاربر</button>
+          <button class="btn_sm" onclick="setRole(${u.id},'provider')">ارائه‌دهنده</button>
+          <button class="btn_sm" onclick="setRole(${u.id},'admin')">ادمین</button>
+        </div>
+      </div>`).join('');
+    }
+  }catch(e){panel.innerHTML=e.message;}
+}
+
+async function delOffer(id){await apiFetch('/offers/'+id,'DELETE');show('offers');}
+async function setRole(id,role){await apiFetch('/admin/users/'+id+'/role','POST',{role});show('admin-users');}
+async function assign(needId){
+  const pid=document.getElementById('p-'+needId).value;
+  await apiFetch('/admin/needs/'+needId+'/assign','POST',{provider_id:Number(pid)});
+  alert('ارجاع شد');
+  show('admin-needs');
+}
+init();
+</script>
+</body></html>

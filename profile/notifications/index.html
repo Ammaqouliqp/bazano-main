@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بازانو - اعلان ها</title>
+<link href="../../assets/css/font-face.css" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/vendor/bootstrap.min.css">
+<link rel="stylesheet" href="../../assets/css/slick.css">
+<link rel="stylesheet" href="../../assets/css/simple-line-icons.css">
+<link rel="stylesheet" href="../../assets/css/ionicons.min.css">
+<link rel="stylesheet" href="../../assets/fontawesome-7.1.0/css/all.min.css">
+<link rel="stylesheet" href="../../assets/css/animate.css">
+<link rel="stylesheet" href="../../assets/css/nice-select.css">
+<link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
+<link rel="stylesheet" href="../../assets/css/magnific-popup.css">
+<link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <!--header area start-->
+    <header class="site_header">
+        <div class="desktop_header" aria-label="هدر دسکتاپ">
+            <div class="desktop_header__actions">
+                <a class="header_icon_button header_notification" href="/profile/notifications/" aria-label="اعلان ها" data-tippy="اعلان ها" data-tippy-placement="bottom">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                </a>
+                <div class="header_profile">
+                    <button class="header_icon_button header_profile__toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-label="پروفایل" data-tippy="پروفایل" data-tippy-placement="bottom">
+                        <i class="fa-regular fa-user" aria-hidden="true"></i>
+                        <i class="fa-solid fa-chevron-down header_profile__chevron" aria-hidden="true"></i>
+                    </button>
+                    <div class="header_profile__dropdown" role="menu">
+                        <a href="/profile/" role="menuitem"><i class="fa-regular fa-user"></i><span>پروفایل</span></a>
+                        <a href="/profile/notifications/" role="menuitem"><i class="fa-regular fa-bell"></i><span>اعلان ها</span></a>
+                        <a href="#" role="menuitem" aria-disabled="true" class="is-disabled"><i class="fa-regular fa-message"></i><span>پیام ها</span></a>
+                    </div>
+                </div>
+                <a class="header_icon_button header_cart" href="../../cart.html" aria-label="سبد خرید" data-tippy="سبد خرید" data-tippy-placement="bottom">
+                    <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+                    <span class="header_cart__count">2</span>
+                </a>
+            </div>
+
+            <div class="desktop_header__search_wrap">
+                <form class="desktop_search" action="/search/" method="get" role="search">
+                    <button class="desktop_search__submit" type="submit" aria-label="جست و جو">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                    <input class="desktop_search__input" type="search" name="q" placeholder="جست و جو" autocomplete="off" aria-label="جست و جو">
+                </form>
+                <div class="desktop_search_panel" aria-hidden="true">
+                    <div class="desktop_search_panel__inner">
+                        <div class="desktop_search_panel__heading">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>جست و جو</span>
+                        </div>
+                        <p>برای جست و جوی محصولات، فروشندگان و مطالب شروع کنید.</p>
+                        <a href="/search/" class="desktop_search_panel__link">مشاهده صفحه جست و جو <i class="fa-solid fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <a class="desktop_header__logo" href="../../index.html" aria-label="بازانو">
+                <img src="../../assets/img/logo/logo.svg" alt="Logo">
+            </a>
+        </div>
+
+        <div class="mobile_header" aria-label="هدر موبایل">
+            <a class="mobile_notification" href="/profile/notifications/" aria-label="اعلان ها" data-tippy="اعلان ها" data-tippy-placement="bottom">
+                <i class="fa-solid fa-bell" aria-hidden="true"></i>
+            </a>
+            <form class="mobile_search_entry" action="/search/" method="get" role="search" aria-label="جست و جو در بازانو">
+                <i class="fa-solid fa-magnifying-glass mobile_search_entry__icon" aria-hidden="true"></i>
+                <input class="mobile_search_entry__input" type="search" name="q" placeholder="جست و جو در" autocomplete="off" aria-label="جست و جو در بازانو" required minlength="1">
+                <img src="../../assets/img/logo/logo.svg" alt="بازانو">
+            </form>
+        </div>
+
+        <nav class="desktop_page_nav" aria-label="ناوبری صفحات">
+            <div class="desktop_page_nav__inner">
+                <a class="desktop_page_nav__link desktop_page_nav__home" href="../../index.html">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i><span>صفحه اصلی</span>
+                </a>
+                <div class="desktop_page_nav__separator" aria-hidden="true"></div>
+                <a class="desktop_page_nav__link" href="../../products.html">
+                    <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><span>محصولات</span>
+                </a>
+                <a class="desktop_page_nav__link" href="../../shops.html">
+                    <i class="fa-solid fa-store" aria-hidden="true"></i><span>فروشندگان</span>
+                </a>
+                <a class="desktop_page_nav__link" href="../../blog.html">
+                    <i class="fa-solid fa-newspaper" aria-hidden="true"></i><span>بلاگ</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!--header area end-->
+    <!-- mobile bottom navigation start -->
+    <nav class="mobile_bottom_nav" aria-label="ناوبری موبایل">
+        <a class="mobile_bottom_nav__item" href="../../index.html">
+            <span class="mobile_bottom_nav__icon"><i class="fa-solid fa-house"></i></span><span>خانه</span>
+        </a>
+        <a class="mobile_bottom_nav__item is-active" href="/profile/">
+            <span class="mobile_bottom_nav__icon"><i class="fa-regular fa-user"></i></span><span>پروفایل</span>
+        </a>
+        <a class="mobile_bottom_nav__item" href="../../cart.html">
+            <span class="mobile_bottom_nav__icon"><i class="fa-solid fa-basket-shopping"></i><b>2</b></span><span>سبد خرید</span>
+        </a>
+        <a class="mobile_bottom_nav__item" href="/categories/">
+            <span class="mobile_bottom_nav__icon"><i class="fa-solid fa-grip"></i></span><span>دسته بندی</span>
+        </a>
+    </nav>
+    <!-- mobile bottom navigation end -->
+<main class="bazano_route_page"><div class="container"><section class="bazano_route_page__content"><span class="bazano_route_page__eyebrow">بازانو</span><h1>اعلان ها</h1><p>اعلان های حساب کاربری در این صفحه نمایش داده خواهند شد.</p></section></div></main>
+    <!--footer area start-->
+    <footer class="footer_widgets">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="footer_widget_list">
+                        <div class="footer_logo"><a href="../../index.html"><img src="../../assets/img/logo/logo.svg" alt="Logo"></a></div>
+                        <div class="footer_contact"><div class="footer_contact_list"><span>تماس با ما:</span><a href="tel:"></a></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <div class="footer_widget_list text-right">
+                        <div class="footer_menu"><ul class="d-flex justify-content-end">
+                            <li><i class="fa fa-home"></i><a href="../../index.html">صفحه اصلی</a></li>
+                            <li><i class="fa fa-shopping-bag"></i><a href="../../shops.html">فروشندگان</a></li>
+                            <li><i class="fa fa-shopping-basket"></i><a href="../../products.html">محصولات</a></li>
+                            <li><i class="fa fa-newspaper"></i><a href="../../blog.html">بلاگ</a></li>
+                        </ul></div>
+                        <div class="footer_social"><ul class="d-flex justify-content-end">
+                            <li><a href="https://ble.ir/bazano" data-tippy="Bale" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top"><i class="svg-icon"><img src="../../assets/img/icon/bale.svg" alt="Bale"></i></a></li>
+                            <li><a href="https://eitaa.com/bazano" data-tippy="Eitaa" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top"><i class="svg-icon"><img src="../../assets/img/icon/eitaa.png" alt="Eitaa"></i></a></li>
+                            <li><a href="https://t.me/baza_no" data-tippy="Telegram" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top"><i class="fab fa-telegram"></i></a></li>
+                            <li><a href="https://www.instagram.com/officialbazano/" data-tippy="Instagram" data-tippy-inertia="true" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-placement="top"><i class="fab fa-instagram"></i></a></li>
+                        </ul></div>
+                        <div class="copyright_right"><p>©2026 <span>Bazano</span> تمامی حقوق این سایت متعلق به <a href="#" target="_blank">بازانو</a> است</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--footer area end-->
+
+    <script src="../../assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="../../assets/js/vendor/popper.js"></script>
+    <script src="../../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../../assets/js/slick.min.js"></script>
+    <script src="../../assets/js/wow.min.js"></script>
+    <script src="../../assets/js/jquery.scrollup.min.js"></script>
+    <script src="../../assets/js/images-loaded.min.js"></script>
+    <script src="../../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../../assets/js/jquery.nice-select.js"></script>
+    <script src="../../assets/js/tippy-bundle.umd.js"></script>
+    <script src="../../assets/js/jquery-ui.min.js"></script>
+    <script src="../../assets/js/jquery.instagramFeed.min.js"></script>
+    <script src="../../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../assets/js/mailchimp-ajax.js"></script>
+    <script src="../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+/*
+ * Bazano Design System
+ * Shared visual language for glass surfaces, cards, controls and responsive
+ * spacing. Keep component-specific behavior in its original section partial.
+ */
+:root {
+    --bz-bg: #f7f7f5;
+    --bz-surface: rgba(255, 255, 255, .72);
+    --bz-surface-strong: rgba(255, 255, 255, .84);
+    --bz-border: rgba(255, 255, 255, .86);
+    --bz-border-soft: rgba(106, 121, 100, .16);
+    --bz-text: #242824;
+    --bz-muted: #727772;
+    --bz-accent: #6a7964;
+    --bz-accent-soft: rgba(106, 121, 100, .12);
+    --bz-shadow: 0 14px 36px rgba(31, 38, 48, .08);
+    --bz-shadow-hover: 0 18px 42px rgba(31, 38, 48, .13);
+    --bz-radius-sm: 14px;
+    --bz-radius-md: 20px;
+    --bz-radius-lg: 28px;
+    --bz-blur: 18px;
+}
+
+html {
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bz-bg);
+    color: var(--bz-text);
+    direction: rtl;
+}
+
+/* Keep the fixed mobile controls from covering the beginning/end of content. */
+@media only screen and (max-width: 991px) {
+    body {
+        padding-top: 80px;
+        padding-bottom: 106px;
+    }
+
+    .bazano_route_page {
+        padding-top: 24px;
+    }
+}
+
+/* Shared glass surface utility. */
+.bazano-glass,
+.bazano_route_page__content,
+.widget_list,
+.checkout_form,
+.order_table_right,
+.grand_totall_area,
+.shopping_coupon_calculate {
+    border: 1px solid var(--bz-border);
+    background: var(--bz-surface);
+    box-shadow: var(--bz-shadow), inset 0 1px 0 rgba(255,255,255,.82);
+    backdrop-filter: blur(var(--bz-blur)) saturate(130%);
+    -webkit-backdrop-filter: blur(var(--bz-blur)) saturate(130%);
+}
+
+/* Product cards: rounded glass shell without clipping the legacy quick actions. */
+.single_product {
+    position: relative;
+    border: 1px solid var(--bz-border-soft);
+    border-radius: var(--bz-radius-lg);
+    background: var(--bz-surface);
+    box-shadow: 0 10px 28px rgba(31,38,48,.045), inset 0 1px 0 rgba(255,255,255,.75);
+    transition: transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+.single_product:hover {
+    transform: translateY(-3px);
+    border-color: rgba(106,121,100,.24);
+    box-shadow: var(--bz-shadow-hover), inset 0 1px 0 rgba(255,255,255,.84);
+}
+.single_product .product_thumb {
+    border-radius: var(--bz-radius-lg) var(--bz-radius-lg) 0 0;
+    background: rgba(255,255,255,.38);
+}
+.single_product .product_content {
+    background: transparent;
+    border-radius: 0 0 var(--bz-radius-lg) var(--bz-radius-lg);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.single_product .product_list_content {
+    background: transparent;
+    border-radius: 0 0 var(--bz-radius-lg) var(--bz-radius-lg);
+}
+
+/* Product controls retain their original behavior but use the shared glass language. */
+.product_action ul li a,
+.shop_toolbar_btn a,
+.pagination_style ul li a {
+    border-radius: 50%;
+    transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+/* Blog cards use the same shell while preserving their existing typography. */
+.single_blog {
+    border: 1px solid var(--bz-border-soft);
+    border-radius: var(--bz-radius-lg);
+    background: var(--bz-surface);
+    box-shadow: 0 10px 28px rgba(31,38,48,.045), inset 0 1px 0 rgba(255,255,255,.75);
+    overflow: hidden;
+    transition: transform .32s ease, box-shadow .32s ease, border-color .32s ease;
+}
+.single_blog:hover {
+    transform: translateY(-3px);
+    border-color: rgba(106,121,100,.24);
+    box-shadow: var(--bz-shadow-hover), inset 0 1px 0 rgba(255,255,255,.84);
+}
+.single_blog .blog_thumb img {
+    display: block;
+}
+.single_blog .blog_content {
+    padding: 22px 22px 26px;
+}
+
+/* Common buttons. */
+.btn-primary,
+.shopping_cart_btn a,
+.shopping_continue_btn a,
+.proceed_checkout_btn a,
+.order_button a {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 7px 18px rgba(31,38,48,.08);
+    transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+}
+.btn-primary:hover,
+.shopping_cart_btn a:hover,
+.shopping_continue_btn a:hover,
+.proceed_checkout_btn a:hover,
+.order_button a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 11px 24px rgba(31,38,48,.12);
+}
+
+/* Inputs and selects share the same soft glass treatment. */
+.checkout_form_input input,
+.checkout_form_input textarea,
+.checkout_form_input select,
+.order-notes textarea,
+.coupon_code input,
+.login_form input,
+.login_form textarea {
+    border-radius: 14px;
+    border: 1px solid rgba(106,121,100,.16);
+    background: rgba(255,255,255,.70);
+    transition: border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
+}
+.checkout_form_input input:focus,
+.checkout_form_input textarea:focus,
+.checkout_form_input select:focus,
+.order-notes textarea:focus,
+.coupon_code input:focus,
+.login_form input:focus,
+.login_form textarea:focus {
+    border-color: rgba(106,121,100,.38);
+    background: rgba(255,255,255,.88);
+    box-shadow: 0 0 0 3px rgba(106,121,100,.08);
+}
+
+/* Breadcrumbs and toolbars sit in the same visual family without becoming cards. */
+.breadcrumbs_other,
+.breadcrumbs_blog {
+    border-radius: var(--bz-radius-md);
+}
+
+/* Generic headings use the existing accent rather than introducing a second palette. */
+.section_title h2,
+.product_header .section_title h2 {
+    color: var(--bz-accent);
+}
+
+/* Route pages inherit the shared glass surface. */
+.bazano_route_page__content {
+    border-radius: var(--bz-radius-lg);
+}
+
+/* Mobile: product/blog cards become lighter and preserve room for the fixed bar. */
+@media only screen and (max-width: 767px) {
+    .single_product,
+    .single_blog {
+        border-radius: 22px;
+    }
+    .single_product .product_content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .single_blog .blog_content {
+        padding: 18px 16px 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .single_product,
+    .single_blog,
+    .btn-primary,
+    .shopping_cart_btn a,
+    .shopping_continue_btn a,
+    .proceed_checkout_btn a,
+    .order_button a { transition-duration: .01ms; }
+}
+
+/* Search page */
+.bazano_search_page__form { margin-top: 24px; }
+.bazano_search_page__form > label { display:block; margin-bottom:8px; color:var(--bz-muted); font-size:13px; }
+.bazano_search_page__field { display:flex; align-items:center; gap:10px; padding:6px; border:1px solid var(--bz-border); border-radius:18px; background:rgba(255,255,255,.62); box-shadow:var(--bz-shadow), inset 0 1px 0 rgba(255,255,255,.84); backdrop-filter:blur(var(--bz-blur)); }
+.bazano_search_page__field > i { width:42px; text-align:center; color:var(--bz-accent); }
+.bazano_search_page__field input { flex:1; min-width:0; height:44px; border:0; outline:0; background:transparent; color:var(--bz-text); font:inherit; }
+.bazano_search_page__field button { border:0; border-radius:13px; padding:0 18px; height:44px; background:rgba(106,121,100,.14); color:#33402f; cursor:pointer; font:inherit; transition:transform .25s ease,background .25s ease; }
+.bazano_search_page__field button:hover { transform:translateY(-1px); background:rgba(106,121,100,.22); }
+.bazano_search_page__results { margin-top:22px; padding:22px; border-radius:var(--bz-radius-md); border:1px solid var(--bz-border); background:rgba(255,255,255,.48); }
+@media only screen and (max-width:575px) { .bazano_search_page__field button { padding:0 12px; } }
+/* Directional content exceptions: these values are logically LTR inside the RTL UI. */
+.ltr-content,
+[dir="ltr"] {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="number"] {
+    direction: ltr;
+}
+
+input[type="number"] {
+    text-align: center;
+}
+
+/* Slick's controls carry directional meaning, so the icon itself follows the RTL carousel. */
+.slick_slider_activation {
+    direction: rtl;
+}
+
